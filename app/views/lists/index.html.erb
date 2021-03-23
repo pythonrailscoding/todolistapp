@@ -1,0 +1,61 @@
+
+<header>
+  Signed in as: <%= current_user.email %></p>
+  <p><br>
+<%= link_to 'New Task', new_list_path, class: "btn btn-secondary" %>
+<%= link_to 'Delete all Crossed items', home_trash_em_path, class: 'btn btn-secondary' %>
+<%= link_to 'Delete all items', home_trash_em_all_path, class: 'btn btn-secondary' %>
+
+
+</header>
+<hr><br>
+
+<table class="table  table-bordered able-hovert">
+  <thead class="table-dark">
+    
+  </thead>
+
+  <tbody>
+    <% @lists.each do |list| %>
+    <% if list.user == current_user %>
+    <% if list.completed %>
+      <tr class="table-secondary">
+        <td class="striker"><%=  list.description %></td>
+        
+       <td> 
+          <center>
+            <%= form_for(list) do |f| %>
+            <%= f.text_field :description, type: 'hidden'%>
+            <%= f.check_box :completed, :checked => false, :style => 'visibility: hidden'%>
+            <%= f.submit "Uncross", class: "btn btn-outline-secondary btn-sm" %>
+            <% end %>
+          </center>
+          
+        </td>
+        <td><%= link_to 'Delete', list, method: :delete, data: { confirm: 'Are you sure?' },  class: "btn btn-outline-danger btn-sm" %></td>
+        <% else %>
+        <tr >
+        <td><%=  list.description %></td>
+        
+        <td>
+          <center>
+            <%= form_for(list) do |f| %>
+            <%= f.text_field :description, type: 'hidden'%>
+            <%= f.check_box :completed, :checked => true, :style => 'visibility: hidden'%>
+            <%= f.submit "Cross off", class: "btn btn-outline-secondary btn-sm" %>
+            <% end %>
+          </center>
+        </td>
+        <td><%= link_to 'Delete', list, method: :delete, data: { confirm: 'Are you sure?' },  class: "btn btn-outline-danger btn-sm"%></td>
+        <% end %>
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<center>
+
+
+</center>

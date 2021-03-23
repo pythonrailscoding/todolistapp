@@ -1,0 +1,51 @@
+<h2><% resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+<div class="card">
+  <h2 class="card-header">Edit Profile</h2>
+  <div class="card-body">
+    <div class="field form-group">
+    <% f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'form-control', placeholder:'Enter your new Email Address' %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field form-group">
+    <% f.label :password %> <br />
+    <%= f.password_field :password, autocomplete: "new-password", class:'form-control', placeholder:"Enter Your New Password, minimum: 6 characters (Leave blank if you don't want to change)" %>
+    <% if @minimum_password_length %>
+      
+      <% end %>
+  </div>
+
+  <div class="field form-group">
+    <% f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:'form-control', placeholder:"Re-enter your new password (Leave blank if your 'New Password Field' is empty)" %>
+  </div>
+
+  <div class="field form-group">
+    <% f.label :current_password %> </i><br />
+    <%= f.password_field :current_password, autocomplete: "current-password", class:'form-control', placeholder:'Enter your current password for us to make your changes take effect' %>
+  </div>
+  <br>
+  <div class="btn-group" role="group" aria-label="Basic example">
+<br>
+  <div class="actions ">
+    <%= f.submit "Update", class:'btn btn-secondary' %>
+  </div>
+<% end %>
+<%= link_to "Back", root_path, class:'btn btn-secondary' %>
+
+ <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure gonna delete your account? This will delete all your data!!" }, method: :delete, class:'btn btn-danger' %>
+
+
+<div class="btn-group" role="group" aria-label="Basic example">
+  </div>
+</div>
+</div>
+</div>
+  
