@@ -2,9 +2,11 @@
 <header>
   Signed in as: <%= current_user.email %></p>
   <p><br>
+    <div class="btn-group" role="group" aria-label="Basic example">
 <%= link_to 'New Task', new_list_path, class: "btn btn-secondary" %>
 <%= link_to 'Delete all Crossed items', home_trash_em_path, class: 'btn btn-secondary' %>
 <%= link_to 'Delete all items', home_trash_em_all_path, class: 'btn btn-secondary' %>
+</div>
 
 
 </header>
